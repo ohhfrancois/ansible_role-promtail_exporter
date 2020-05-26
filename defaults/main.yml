@@ -1,0 +1,43 @@
+---
+# defaults file for promtail_exporter
+loki_user:   loki
+loki_group:  loki
+promtail_base_dir: /opt/promtail
+promtail_dir: "{{ promtail_base_dir }}"
+promtail_config_dir: /etc/promtail
+promtail_log_dir: /var/log/promtail
+promtail_version: "1.4.1"
+loki_server_url: http://loki:3100
+promtail_additional_groups: adm
+promtail_dist_url: "https://github.com/grafana/loki/releases/download/v{{ promtail_version }}/promtail-linux-amd64.zip"
+promtail_dist_location: "{{ promtail_base_dir }}/promtail-linux-amd64.zip"
+
+promtail_scrape_configs: ""
+## Sample :
+#promtail_scrape_configs: |
+#  - job_name: system
+#    entry_parser: raw
+#    static_configs:
+#    - targets:
+#        - rhapsody
+#      labels:
+#        job: varlogs
+#        host: "{{ inventory_hostname }}"
+#        __path__: /var/log/*log
+#  - job_name: ohp
+#    entry_parser: raw
+#    static_configs:
+#    - targets:
+#        - frontend
+#      labels:
+#        job: ohp_logs
+#        host: "{{ inventory_hostname }}"
+#        __path__: /var/orion/platform/log/*.log
+
+promtail_force_directory_rights:
+- /var/orion/platform/log
+# sample :
+#promtail_force_directory_rights:
+#- /var/orion/platform/log
+
+...

@@ -1,0 +1,9 @@
+---
+- name: Force directory rights
+  file:
+    path: "{{ item }}"
+    recurse: yes
+    mode: '0755'
+  with_items: "{{ promtail_force_directory_rights }}"
+
+...

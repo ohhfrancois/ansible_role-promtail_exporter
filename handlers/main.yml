@@ -1,0 +1,9 @@
+---
+# handlers file for promtail_exporter
+
+- name: restart promtail
+  service:
+    name: promtail
+    enabled: true
+    state: restarted
+  become: true

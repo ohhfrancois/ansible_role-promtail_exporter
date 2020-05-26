@@ -1,0 +1,14 @@
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+positions:
+  filename: /tmp/positions.yaml
+
+clients:
+  - url: {{ loki_server_url }}/loki/api/v1/push
+    tls_config:
+      insecure_skip_verify: true
+
+scrape_configs:
+{{ promtail_scrape_configs | indent( width=4, indentfirst=True) }}

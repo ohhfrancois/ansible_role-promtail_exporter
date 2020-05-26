@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Install promtail_exporter"
+      include_role:
+        name: "promtail_exporter"
