@@ -1,0 +1,41 @@
+---
+dependency:
+  name: galaxy
+
+driver:
+  name: docker
+
+platforms:
+  - name: centos6
+    image: centos:6
+  - name: centos7
+    image: centos:7
+  - name: ubuntu1804
+    image: ubuntu:18.04
+  - name: debian9
+    image: debian:9
+  # - name: instance
+  #   image: docker.io/pycontribs/centos:7
+  #   pre_build_image: true
+
+provisioner:
+  name: ansible
+  log: True
+  options:
+    vvv: True
+  playbooks:
+    docker:
+      create: create.yml
+      destroy: destroy.yml
+    create: create.yml
+    converge: converge.yml
+    destroy: destroy.yml
+  lint:
+    name: ansible-lint
+
+verifier:
+  name: ansible
+
+lint: |
+  yamllint .
+  ansible-lint

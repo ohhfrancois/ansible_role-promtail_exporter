@@ -1,0 +1,4 @@
+---
+# tasks file for promtail_exporter
+  - include: promtail.yml
+  - include: force-directory-rights.yml

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+PROMTAIL_VERSION="{{ promtail_version }}"
+cd {{ promtail_base_dir }}
+wget  https://github.com/grafana/loki/releases/download/v${PROMTAIL_VERSION}/promtail-linux-amd64.zip
+sudo service promtail stop
+unzip promtail-linux-amd64.zip
+sudo chown -R {{ loki_user }}:root {{ promtail_base_dir }}/promtail-linux-amd64
+sudo chmod +x {{ promtail_base_dir }}/promtail-linux-amd64
+#             Source                                  Link
+sudo ln -f -s {{ promtail_base_dir }}/promtail-linux-amd64 {{ promtail_base_dir }}/promtail
+sudo service promtail start
